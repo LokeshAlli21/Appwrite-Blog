@@ -1,2 +1,2 @@
 # Appwrite Blog Project
-this is my first project ot deploy
+this is my first project to deploy
