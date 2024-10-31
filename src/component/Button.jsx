@@ -9,10 +9,12 @@ function Button({children,
 }) {
   return (
     <button 
-    className={` px-4 py-2 rounded-lg ${className} ${bgColor} ${textColor}`}
-    {...props}
-    >{children}</button>
-  )
+        className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 hover:opacity-90 ${className} ${bgColor} ${textColor}`}
+        {...props}
+    >
+        {children}
+    </button>
+);
 }
 
 export default Button

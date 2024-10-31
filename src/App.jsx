@@ -10,10 +10,10 @@ function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
-  const obj = {
-    email: 'abc@gmail.com',
-    password: '12345678'
-  }
+  // const obj = {
+  //   email: 'abc@gmail.com',
+  //   password: '12345678'
+  // }
   // authService.login(obj).then((userData) => console.log('login successful')) // test login // working
 
   useEffect(() => {
@@ -31,18 +31,20 @@ function App() {
   }, [])
 
   return !loading ? (
-    <div className=' min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className=' w-full block'>
+    <div className="min-h-screen flex flex-col justify-between bg-gray-100">
+      <div className="w-full">
         <Header />
-        <main>
+        <main className="flex-grow p-4">
           <Outlet />
         </main>
         <Footer />
       </div>
     </div>
-  ) : (
-    <div>loading...</div>
-  )
+) : (
+    <div className="flex items-center justify-center min-h-screen text-gray-500">
+        Loading...
+    </div>
+);
 }
 
 export default App

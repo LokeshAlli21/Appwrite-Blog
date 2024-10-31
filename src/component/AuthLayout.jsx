@@ -16,5 +16,10 @@ export default function Protected({children, authentication = true, }) {
         }
         setLoader(false)
     },[authStatus, navigate, authentication])
-  return loader? <h1>Loading...</h1> : <>{children}</>
+    return loader ? (
+        <h1 className="text-center text-2xl font-semibold text-gray-600 py-10">Loading...</h1>
+    ) : (
+        <>{children}</>
+    );
+    
 }
