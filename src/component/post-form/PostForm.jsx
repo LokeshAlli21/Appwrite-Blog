@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 function PostForm({post, slug}) {
     const [loading, setLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
     const {register, handleSubmit,watch,setValue, control , getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
@@ -44,11 +45,17 @@ function PostForm({post, slug}) {
                 const dbPost = await appwriteService.createPost({
                     ...data,
                     userId: userData.$id,
+                    author: {
+                        name: userData.name,
+                        email: userData.email,
+                    },
                 })
 
-                if(dbPost){
+                if(dbPost !== 'error'){
                     setLoading(false)
                     navigate(`/post/${dbPost.$id}`)
+                }else{
+                    setIsError(true)
                 }
             }
         }
@@ -84,7 +91,12 @@ function PostForm({post, slug}) {
 //     <div>loading....</div>
 //   ) : 
 return loading ? (
-    <p className="text-center text-gray-500 py-6">Loading...</p>
+    <div className="text-center text-gray-500 py-6">
+    <p>Loading...</p>
+    {isError && (
+        <h3 className="text-red-500">[Error]</h3>
+    )}
+</div>
 ) : (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap bg-white">
         <div className="w-full md:w-2/3 px-2">

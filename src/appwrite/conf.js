@@ -14,7 +14,7 @@ class Service {
         this.bucket = new Storage(this.client)
     }
     // post related services
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, slug, content, featuredImage, status, userId, author}){
         try {
             return await this.databases.createDocument(
                 env.databaseId,
@@ -25,12 +25,15 @@ class Service {
                     content, 
                     featuredImage,
                     status,
-                    userId
+                    userId,
+                    author: JSON.stringify(author),
                 }
             )
         } catch (error) {
             console.log('appwrite service :: createPost error :: ', error)
             throw error
+        } finally{
+            return 'error'
         }
     }
     async updatePost(slug, {title, content, featuredImage, status}){

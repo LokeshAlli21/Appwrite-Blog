@@ -55,6 +55,44 @@ export default function Post() {
           )}
         </div>
         <div className="w-full mb-6">
+            <div className=" w-full text-right p-2 rounded-lg bg-gray-100 italic">
+              <h3 className="text-gray-800">
+                  {'Created on: '} 
+                  <span className="font-semibold text-gray-600">
+                      {new Date(post.$createdAt).toLocaleString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: true,
+                          timeZone: 'Asia/Kolkata'
+                      })}
+                  </span>
+              </h3>
+              {(post.$createdAt !== post.$updatedAt) && (
+                <h3 className="text-gray-800">
+                  {'Updated on: '} 
+                  <span className="font-semibold text-gray-600">
+                      {new Date(post.$updatedAt).toLocaleString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: true,
+                          timeZone: 'Asia/Kolkata'
+                      })}
+                  </span>
+               </h3>
+              )}
+              {post.author && (
+                <h3 className=" text-gray-800">Posted by: <span className="font-semibold text-gray-600">{JSON.parse(post.author).name}</span></h3>
+              )}
+              {post.author && (
+                <h3 className=" text-gray-800">Email: <span className="font-semibold text-gray-600">{JSON.parse(post.author).email}</span></h3>
+              )}
+            </div>        
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
         <div className="browser-css">{parse(post.content)}</div>
