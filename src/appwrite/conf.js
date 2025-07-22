@@ -125,11 +125,11 @@ class Service {
         console.log('appwrite service :: getFilePreview :: ', fileId)
         console.log('appwrite service :: env.bucketId :: ', env.bucketId)
         if (!fileId) return null;
-        console.log('appwrite service :: getFilePreview :: ', this.bucket.getFilePreview(
+        console.log('appwrite service :: getFilePreview :: ', this.bucket.getFileView(
             env.bucketId,
             fileId
         ))
-        return this.bucket.getFilePreview(
+        return this.bucket.getFileView(
             env.bucketId,
             fileId
         )
